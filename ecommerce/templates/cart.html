@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<section class="product_section layout_padding" style="background-color: #d1d1d1;">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Your <span>Cart</span>
+            </h2>
+        </div>
+    </div>
+</section>
+<div class="container-fluid">
+   <div class="row mt-3">
+      <div class="col-md-8">
+         <table class="table table-bordered border-dark">
+            <tr class="text-center">
+               <th colspan="6" class="p-3">
+                  CART ITEMS
+               </th>
+            </tr>
+            {% for i in cart %}
+            <tr class="text-center">
+               <td class="p-2"><img src="{{i.product.image.url}}" height="100px" width="100px"></td>
+               <td class="p-2">Product Name: {{i.product.name}}</td>
+               <td class="p-2">Product Id: {{i.product.id}}</td>
+               <td class="p-2">Quantity: {{i.quantity}}<br>
+               Unit Price: {{i.product.price}}</td>
+               <td class="p-2">Subtotal: {{i.subtotal}}</td>
+               {% if i.product.stock > 0 %}
+               <td class="p-2"><a href="{% url 'cart:addtocart' i.product.id %}"><i class="fa-solid m-1 fa-circle-plus"></i></a><a href="{% url 'cart:cart_decrement' i.product.id %}"><i class="fa-solid m-1 fa-circle-minus"></i></a><a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-solid m-1 fa-trash"></i></a></td>
+               {% else %}
+               <td class="p-2"><a href="{% url 'cart:cart_decrement' i.product.id %}"><i class="fa-solid m-1 fa-circle-minus"></i></a><a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-solid m-1 fa-trash"></i></a></td>
+               {% endif %}
+            </tr>
+            {% endfor %}
+         </table>
+      </div>
+      <div class="col-md-4">
+         <table class="table table-bordered border-dark">
+            <tr class="text-center">
+               <th colspan="4">
+                  CHECK OUT
+               </th>
+            </tr>
+            <tr class="text-center">
+               <td>Total:{{total}}</td>
+            </tr>
+         </table>
+         <div class="d-flex justify-content-between order_checkout">
+            <a href="{% url 'cart:orderform' %}" class="btn-dark p-2">Place Order</a>
+            <a href="{% url 'shop:category' %}" class="btn-dark p-2">Continue Shopping</a>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4 footer-col">
+                  <div class="footer_contact">
+                     <h4>
+                        Reach at..
+                     </h4>
+                     <div class="contact_link_box">
+                        <a href="">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span>
+                        Location
+                        </span>
+                        </a>
+                        <a href="">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span>
+                        Call +01 1234567890
+                        </span>
+                        </a>
+                        <a href="">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <span>
+                        demo@gmail.com
+                        </span>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 footer-col">
+                  <div class="footer_detail">
+                     <a href="index.html" class="footer-logo">
+                     Famms
+                     </a>
+                     <p>
+                        Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+                     </p>
+                     <div class="footer_social">
+                        <a href="">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="">
+                        <i class="fa fa-pinterest" aria-hidden="true"></i>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 footer-col">
+                  <div class="map_container">
+                     <div class="map">
+                        <div id="googleMap"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="footer-info">
+               <div class="col-lg-7 mx-auto px-0">
+                  <p>
+                     &copy; <span id="displayYear"></span> All Rights Reserved By
+                     <a href="https://html.design/">Free Html Templates</a><br>
+
+                     Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </footer>
+{% endblock %}
