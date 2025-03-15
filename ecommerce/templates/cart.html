@@ -53,80 +53,14 @@
             </tr>
          </table>
          <div class="d-flex justify-content-between order_checkout">
+            {% if cart %}
             <a href="{% url 'cart:orderform' %}" class="btn-dark p-2">Place Order</a>
-            <a href="{% url 'shop:category' %}" class="btn-dark p-2">Continue Shopping</a>
+            {% else %}
+            <button class="btn btn-dark p-2 mb-1 mt-2" disabled>Place Order</button>
+            {% endif %}
+            <a href="{% url 'shop:category' %}#products_list" class="btn-dark p-2">Continue Shopping</a>
          </div>
       </div>
    </div>
 </div>
-{% endblock %}
-
-{% block footer %}
-<footer class="footer_section">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4 footer-col">
-                  <div class="footer_contact">
-                     <h4>
-                        Reach at..
-                     </h4>
-                     <div class="contact_link_box">
-                        <a href="">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <span>
-                        Location
-                        </span>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span>
-                        Call +01 1234567890
-                        </span>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <span>
-                        demo@gmail.com
-                        </span>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 footer-col">
-                  <div class="footer_detail">
-                     <a href="index.html" class="footer-logo">
-                     Famms
-                     </a>
-                     <p>
-                        Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
-                     </p>
-                     <div class="footer_social">
-                        <a href="">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-pinterest" aria-hidden="true"></i>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 footer-col">
-                  <div class="map_container">
-                     <div class="map">
-                        <div id="googleMap"></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </footer>
 {% endblock %}

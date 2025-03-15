@@ -11,20 +11,25 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-12">
-            <div class="full">
+            <div class="full text-center">
                <h3 class="mb-5 text-white">Add Product</h3>
             </div>
          </div>
       </div>
    </div>
 </section>
+
 <section class="product_section layout_padding">
-    <div class="container w-50">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form | crispy}}
-            <input class="btn btn-outline-light mt-3" type="submit" value="Add">
-        </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-8 col-sm-10 col-12">
+                <form method="POST" enctype="multipart/form-data" class="p-4 shadow-lg rounded bg-light">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-dark mt-3 w-100" type="submit" value="Add">
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

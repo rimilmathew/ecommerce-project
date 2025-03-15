@@ -7,37 +7,79 @@
 {% endblock %}
 
 {% block content %}
-<section class="inner_page_head">
-   <div class="container-fluid">
+<section class="inner_page_head bg-dark py-3">
+   <div class="container">
       <div class="row">
-         <div class="col-md-12">
-            <div class="full">
-               <h3 class="mb-5 text-white">Billing Details</h3>
-            </div>
+         <div class="col-12 text-center">
+            <h3 class="mb-4 text-white">Billing Details</h3>
          </div>
       </div>
    </div>
 </section>
-<section class="product_section layout_padding">
-    <div class="container w-50">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label class="form-label">Address</label>
-                <textarea name="a" class="form-control">Write address here</textarea>
+
+<section class="product_section layout_padding py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <form method="POST" class="p-4 shadow rounded bg-light" onsubmit="return validateForm()">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea name="a" id="address" class="form-control" placeholder="Write address here" required></textarea>
+                        <div class="text-danger small" id="addressError"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" name="p" id="phone" class="form-control" placeholder="Phone number" required pattern="[6-9]\d{9}">
+                        <div class="text-danger small" id="phoneError"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">PIN</label>
+                        <input type="text" name="pin" id="pin" class="form-control" placeholder="PIN number" required pattern="\d{6}">
+                        <div class="text-danger small" id="pinError"></div>
+                    </div>
+                    <input class="btn btn-outline-dark mt-3 w-100" type="submit" value="Submit">
+                </form>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Phone</label>
-                <input type="number" name="p" class="form-control" placeholder="phone number">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Pin</label>
-                <input type="number" name="pin" class="form-control" placeholder="PIN number">
-            </div>
-            <input class="btn btn-outline-light mt-3" type="submit" value="submit">
-        </form>
+        </div>
     </div>
 </section>
+
+<script>
+function validateForm() {
+    let isValid = true;
+
+    // Address Validation
+    let address = document.getElementById("a").value.trim();
+    if (address == "") {
+        document.getElementById("aError").innerText = "Address is required.";
+        isValid = false;
+    } else {
+        document.getElementById("addressError").innerText = "";
+    }
+
+    // Phone Number Validation (10 digits, starting with 6-9)
+    let phone = document.getElementById("p").value.trim();
+    let phonePattern = /^[6-9]\d{9}$/;
+    if (!phonePattern.test(phone)) {
+        document.getElementById("phoneError").innerText = "Enter a valid 10-digit phone number.";
+        isValid = false;
+    } else {
+        document.getElementById("phoneError").innerText = "";
+    }
+
+    // PIN Validation (6 digits)
+    let pin = document.getElementById("pin").value.trim();
+    let pinPattern = /^\d{6}$/;
+    if (!pinPattern.test(pin)) {
+        document.getElementById("pinError").innerText = "Enter a valid 6-digit PIN.";
+        isValid = false;
+    } else {
+        document.getElementById("pinError").innerText = "";
+    }
+
+    return isValid;
+}
+</script>
+
 {% endblock %}
-
-

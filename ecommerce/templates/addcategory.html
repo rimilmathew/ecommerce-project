@@ -18,13 +18,18 @@
       </div>
    </div>
 </section>
+
 <section class="product_section layout_padding">
-    <div class="container w-50">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form | crispy}}
-            <input class="btn btn-outline-light mt-3" type="submit" value="Add">
-        </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-outline-light mt-3 w-100" type="submit" value="Add">
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

@@ -6,100 +6,33 @@
 {% endblock %}
 
 {% block content %}
-<section class="inner_page_head">
-   <div class="container-fluid">
+<section class="inner_page_head bg-dark py-3">
+   <div class="container">
        <div class="row">
-         <div class="col-md-12">
-            <h3 class="mb-5 text-white text-capitalize">Customer Name: {{user.username}}</h3>
+         <div class="col-12 text-center">
+            <h3 class="mb-4 text-white text-capitalize">Customer Name: {{ user.username }}</h3>
          </div>
        </div>
    </div>
 </section>
+
 {% for i in orders %}
-<section class="product_order_section layout_padding3">
+<section class="product_order_section layout_padding3 py-4">
     <div class="container">
-        <div class="product_order_image">
-            <img src="{{ i.product.image.url }}" alt=".." class="img-fluid">
-        </div>
-        <div class="product_order_details">
-           <h2>{{i.product.name}}</h2>
-           <p>Price: {{i.product.price}}</p>
-           <p>No.of items: {{i.no_of_items}}</p>
-           <p>Order Id: {{i.order_id}}</p>
-           <p>Ordered on: {{i.ordered_date}}</p>
-           <p>delivery status: <span class="text-danger">{{i.delivery_status}}</span></p>
+        <div class="row align-items-center shadow-sm p-3 bg-light rounded">
+            <div class="col-md-4 col-sm-12 text-center">
+                <img src="{{ i.product.image.url }}" alt="Product Image" class="img-fluid rounded" style="max-height: 200px;">
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <h2 class="h5">{{ i.product.name }}</h2>
+                <p class="mb-1"><strong>Price:</strong> {{ i.product.price }}</p>
+                <p class="mb-1"><strong>No. of items:</strong> {{ i.no_of_items }}</p>
+                <p class="mb-1"><strong>Order ID:</strong> {{ i.order_id }}</p>
+                <p class="mb-1"><strong>Ordered on:</strong> {{ i.ordered_date }}</p>
+                <p class="mb-1"><strong>Delivery Status:</strong> <span class="text-danger">{{ i.delivery_status }}</span></p>
+            </div>
         </div>
     </div>
 </section>
 {% endfor %}
-{%endblock%}
-
-{% block footer %}
-<footer class="footer_section">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4 footer-col">
-                  <div class="footer_contact">
-                     <h4>
-                        Reach at..
-                     </h4>
-                     <div class="contact_link_box">
-                        <a href="">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <span>
-                        Location
-                        </span>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span>
-                        Call +01 1234567890
-                        </span>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <span>
-                        demo@gmail.com
-                        </span>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 footer-col">
-                  <div class="footer_detail">
-                     <a href="index.html" class="footer-logo">
-                     Famms
-                     </a>
-                     <p>
-                        Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
-                     </p>
-                     <div class="footer_social">
-                        <a href="">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                        <i class="fa fa-pinterest" aria-hidden="true"></i>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 footer-col">
-                  <div class="map_container">
-                     <div class="map">
-                        <div id="googleMap"></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </footer>
 {% endblock %}
