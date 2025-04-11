@@ -1,6 +1,6 @@
 # eCommerce Platform
 
-A Django-based eCommerce website for browsing, shopping, and secure checkout.
+A Django-based eCommerce website for browsing, shopping, and secure checkout
 https://rimilmathew.pythonanywhere.com/
 
 ## Features
